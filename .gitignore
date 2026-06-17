@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled C++ binaries
+*.exe
+*.obj
+*.o
+*.out
+
+# IDE configs
+.vscode/
+.idea/
+
+# Testing files and logs
+test_output.txt
+*.log
