@@ -1,0 +1,4 @@
+AccountID,Name,Balance
+1001,John Doe,4000.00
+1002,Jane Smith,3300.00
+1003,Ali Ahmed,3500.00

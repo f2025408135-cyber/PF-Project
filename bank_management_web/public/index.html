@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bank - Management System</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                </div>
+                <h2>NEXUS BANK</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="create">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                    <span>Create Account</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="transactions">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    <span>Banking Ops</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="search-panel">
+                    <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Advanced Search</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="db-status">
+                    <span class="status-pulse"></span>
+                    <span>Live accounts.txt</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <main class="main-content">
+            <!-- Header Section -->
+            <header class="app-header">
+                <div>
+                    <h1>System Overview</h1>
+                    <p class="subtitle" id="current-date">Fetching date...</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary btn-icon" id="btn-refresh">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                        <span>Sync File</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Metrics Ribbon -->
+            <section class="metrics-grid">
+                <div class="metric-card card">
+                    <div class="metric-info">
+                        <span class="metric-label">Total Deposits</span>
+                        <h3 class="metric-value" id="metric-total-balance">$0.00</h3>
+                    </div>
+                    <div class="metric-icon val-green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                </div>
+                <div class="metric-card card">
+                    <div class="metric-info">
+                        <span class="metric-label">Active Accounts</span>
+                        <h3 class="metric-value" id="metric-total-accounts">0</h3>
+                    </div>
+                    <div class="metric-icon val-blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                </div>
+                <div class="metric-card card">
+                    <div class="metric-info">
+                        <span class="metric-label">Average Balance</span>
+                        <h3 class="metric-value" id="metric-avg-balance">$0.00</h3>
+                    </div>
+                    <div class="metric-icon val-violet">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middle Section: Operations / Form Panel -->
+            <section class="operations-section">
+                <!-- Create Account panel -->
+                <div class="card operation-card hide" id="panel-create">
+                    <div class="card-header">
+                        <h2>Create New Account</h2>
+                        <p>Open a new bank account with dynamic file validation</p>
+                    </div>
+                    <form id="form-create" class="op-form">
+                        <div class="form-group">
+                            <label for="create-id">Account ID</label>
+                            <input type="number" id="create-id" placeholder="e.g. 1004" required min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="create-name">Account Holder Name</label>
+                            <input type="text" id="create-name" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="create-deposit">Initial Deposit ($)</label>
+                            <input type="number" id="create-deposit" placeholder="0.00" required min="0" step="0.01">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                    </form>
+                </div>
+
+                <!-- Banking Operations Panel -->
+                <div class="card operation-card" id="panel-transactions">
+                    <div class="card-header">
+                        <h2>Banking Operations</h2>
+                        <p>Process secure deposits, withdrawals, and account transfers</p>
+                    </div>
+                    
+                    <div class="tab-ribbon">
+                        <button class="tab-btn active" data-op="deposit">Deposit</button>
+                        <button class="tab-btn" data-op="withdraw">Withdraw</button>
+                        <button class="tab-btn" data-op="transfer">Transfer</button>
+                    </div>
+
+                    <!-- Deposit Form -->
+                    <form id="form-deposit" class="op-form tab-form">
+                        <div class="form-group">
+                            <label for="deposit-id">Account ID</label>
+                            <input type="number" id="deposit-id" placeholder="Enter Account ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deposit-amount">Deposit Amount ($)</label>
+                            <input type="number" id="deposit-amount" placeholder="0.00" required min="0.01" step="0.01">
+                        </div>
+                        <button type="submit" class="btn btn-success btn-full">Complete Deposit</button>
+                    </form>
+
+                    <!-- Withdraw Form -->
+                    <form id="form-withdraw" class="op-form tab-form hide">
+                        <div class="form-group">
+                            <label for="withdraw-id">Account ID</label>
+                            <input type="number" id="withdraw-id" placeholder="Enter Account ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdraw-amount">Withdrawal Amount ($)</label>
+                            <input type="number" id="withdraw-amount" placeholder="0.00" required min="0.01" step="0.01">
+                        </div>
+                        <button type="submit" class="btn btn-danger btn-full">Process Withdrawal</button>
+                    </form>
+
+                    <!-- Transfer Form -->
+                    <form id="form-transfer" class="op-form tab-form hide">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="transfer-src">Source Account ID</label>
+                                <input type="number" id="transfer-src" placeholder="From ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transfer-dest">Destination ID</label>
+                                <input type="number" id="transfer-dest" placeholder="To ID" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="transfer-amount">Transfer Amount ($)</label>
+                            <input type="number" id="transfer-amount" placeholder="0.00" required min="0.01" step="0.01">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Execute Transfer</button>
+                    </form>
+                </div>
+
+                <!-- Database Search and Filters -->
+                <div class="card operation-card" id="panel-search">
+                    <div class="card-header">
+                        <h2>Database Filter</h2>
+                        <p>Search and refine local accounts dynamically</p>
+                    </div>
+                    <div class="op-form">
+                        <div class="form-group">
+                            <label for="search-name">Search by Name</label>
+                            <div class="input-icon-wrapper">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="input-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                <input type="text" id="search-name" placeholder="Search name (e.g. John)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="slider-header">
+                                <label for="search-balance">Min Balance Threshold ($)</label>
+                                <span class="slider-value" id="balance-slider-val">$0</span>
+                            </div>
+                            <input type="range" id="search-balance" min="0" max="10000" step="100" value="0" class="range-slider">
+                            <div class="slider-labels">
+                                <span>$0</span>
+                                <span>$5K</span>
+                                <span>$10K+</span>
+                            </div>
+                        </div>
+                        <button id="btn-clear-filters" class="btn btn-secondary btn-full">Reset Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Section: Accounts Table -->
+            <section class="card table-card">
+                <div class="table-header">
+                    <h2>Active Database Records</h2>
+                    <div class="records-badge" id="record-count">0 Records</div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table" id="accounts-table">
+                        <thead>
+                            <tr>
+                                <th>Account ID</th>
+                                <th>Account Holder</th>
+                                <th>Balance</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr>
+                                <td colspan="4" class="table-loader">Connecting to Express API server...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-container" id="toast-box"></div>
+</body>
+</html>
